@@ -2,7 +2,6 @@ import pandapower as pp
 import pandapower.networks as pn
 import pandas as pd
 import numpy as np
-import copy
 from pandapower.plotting.plotly import simple_plotly
 #Network construction
 
@@ -37,15 +36,6 @@ pp.create_line_from_parameters(net, name='line5', from_bus = 2, to_bus = 3, geod
                                length_km= 1, r_ohm_per_km = .00297, x_ohm_per_km = 0.0297, c_nf_per_km = 0.00674, max_i_ka = 1)
 pp.create_line_from_parameters(net, name='line6', from_bus = 3, to_bus = 4, geodata = ([50,50],[0,50]),
                                length_km= 1, r_ohm_per_km = .00297, x_ohm_per_km = 0.0297, c_nf_per_km = 0.00674, max_i_ka = 1, max_loading_percent=60)
-
 pp.create_load(net, bus=1, p_kw=300000, q_kvar=98610)
 pp.create_load(net, bus=2, p_kw=300000, q_kvar=98610)
 pp.create_load(net, bus=3, p_kw=400000, q_kvar=131470)
-
-pp.runopp(net, verbose=True)
-
-import plotly
-plotly.tools.set_credentials_file(username='chaweewatp', api_key='bWuZ24mbXFaDeinkGIGR')#API_KEY = hKAZzNC6AUqyBzEreCGZ
-
-from pandapower.plotting.plotly import pf_res_plotly
-pf_res_plotly(net)
